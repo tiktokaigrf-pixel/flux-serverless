@@ -59,6 +59,10 @@ async def load_model():
     logger.info("Application startup complete.")  # ← PyWorker on_load Trigger!
 
 
+@app.get("/ping")
+def ping():
+    return {"message" : "test working"}
+
 @app.post("/v1/images/generations", response_model=ImageResponse)
 async def generate_image(request: ImageRequest):
     if pipe is None:
